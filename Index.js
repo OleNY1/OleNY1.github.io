@@ -64,41 +64,52 @@ document.querySelectorAll('.bento-item').forEach(item => {
     observer.observe(item);
 });
 
-// Contact form handling
-const contactForm = document.querySelector('.contact-form form');
+// Contact form — sends to of2222@columbia.edu via FormSubmit
+const contactForm = document.getElementById('contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(this);
-        const name = this.querySelector('input[type="text"]').value;
-        const email = this.querySelector('input[type="email"]').value;
-        const message = this.querySelector('textarea').value;
-        
-        // Simple validation
+
+        const name = this.querySelector('input[name="name"]').value.trim();
+        const email = this.querySelector('input[name="email"]').value.trim();
+        const message = this.querySelector('textarea[name="message"]').value.trim();
+
         if (!name || !email || !message) {
             showNotification('Please fill in all fields', 'error');
             return;
         }
-        
+
         if (!isValidEmail(email)) {
             showNotification('Please enter a valid email address', 'error');
             return;
         }
-        
-        // Simulate form submission
+
         const submitButton = this.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
-        
-        setTimeout(() => {
+
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch('https://formsubmit.co/ajax/of2222@columbia.edu', {
+                method: 'POST',
+                headers: { Accept: 'application/json' },
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Send failed');
+            }
+
             showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
             this.reset();
+        } catch {
+            showNotification('Could not send your message. Please email of2222@columbia.edu directly.', 'error');
+        } finally {
             submitButton.textContent = originalText;
             submitButton.disabled = false;
-        }, 2000);
+        }
     });
 }
 
