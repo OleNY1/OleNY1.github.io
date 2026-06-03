@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Elements Flashcards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .flashcards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .flashcard {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .flashcard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+            background: #f8f9fa;
+        }
+
+        .flashcard-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .flashcard-content {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .tag-highlight {
+            color: #4299e1;
+            font-weight: bold;
+        }
+
+        .attribute-highlight {
+            color: #f6ad55;
+            font-weight: bold;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .flashcards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .flashcard {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 HTML Elements Flashcards</h1>
+        
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showAll()">All Cards</button>
+            <button class="nav-btn" onclick="showStructure()">Structure</button>
+            <button class="nav-btn" onclick="showForm()">Form Elements</button>
+            <button class="nav-btn" onclick="showMeta()">Meta & Script</button>
+        </div>
+
+        <div class="flashcards-grid">
+            <!-- Section Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">🏗️ Section Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about the &lt;section&gt; element</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Section Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Groups related content into distinct parts of a document.</p>
+                            <p><strong>Semantic:</strong> Helps screen readers and search engines understand page structure.</p>
+                            <div class="code-example">
+&lt;section id="about"&gt;<br>
+&nbsp;&nbsp;&lt;h2&gt;About Me&lt;/h2&gt;<br>
+&nbsp;&nbsp;&lt;p&gt;My story...&lt;/p&gt;<br>
+&lt;/section&gt;
+                            </div>
+                            <p><strong>Benefits:</strong> Accessibility, SEO, navigation, code organization</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Span Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">📝 Span Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about the &lt;span&gt; element</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Span Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Inline container for styling or targeting specific text.</p>
+                            <p><strong>Inline Element:</strong> Doesn't create line breaks, flows with text.</p>
+                            <div class="code-example">
+&lt;p&gt;Hello &lt;span class="highlight"&gt;world&lt;/span&gt;!&lt;/p&gt;
+                            </div>
+                            <p><strong>Common Uses:</strong> Highlighting text, applying styles, JavaScript targeting</p>
+                            <p><strong>vs Div:</strong> Span is inline, div is block-level</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Div Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">📦 Div Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about the &lt;div&gt; element</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Div Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Generic block-level container for grouping elements.</p>
+                            <p><strong>Block Element:</strong> Creates line breaks, takes full width.</p>
+                            <div class="code-example">
+&lt;div class="hamburger"&gt;<br>
+&nbsp;&nbsp;&lt;span class="bar"&gt;&lt;/span&gt;<br>
+&nbsp;&nbsp;&lt;span class="bar"&gt;&lt;/span&gt;<br>
+&nbsp;&nbsp;&lt;span class="bar"&gt;&lt;/span&gt;<br>
+&lt;/div&gt;
+                            </div>
+                            <p><strong>Why under hamburger:</strong> Groups the three lines together for styling and JavaScript targeting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meta Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">🔍 Meta Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about &lt;meta&gt; tags</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Meta Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Provides metadata about the HTML document.</p>
+                            <p><strong>Placement:</strong> Always in the &lt;head&gt; section.</p>
+                            <div class="code-example">
+&lt;meta charset="UTF-8"&gt;<br>
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>
+&lt;meta name="description" content="My portfolio"&gt;
+                            </div>
+                            <p><strong>Common Uses:</strong> Character encoding, viewport settings, SEO descriptions, social media cards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- I Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">🎨 I Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about the &lt;i&gt; element</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">I Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Represents text in an alternate voice or mood (italic).</p>
+                            <p><strong>Semantic:</strong> Indicates emphasis, foreign words, technical terms, thoughts.</p>
+                            <div class="code-example">
+&lt;p&gt;The word &lt;i&gt;bonjour&lt;/i&gt; means hello in French.&lt;/p&gt;<br>
+&lt;i class="fas fa-code"&gt;&lt;/i&gt; &lt;!-- Font Awesome icon --&gt;
+                            </div>
+                            <p><strong>Common Uses:</strong> Foreign words, technical terms, icons (with Font Awesome)</p>
+                            <p><strong>Note:</strong> Often used for icons in modern web development</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">📝 Input Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about the &lt;input&gt; element</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Input Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Creates interactive form controls for user input.</p>
+                            <p><strong>Self-closing:</strong> No closing tag needed.</p>
+                            <div class="code-example">
+&lt;input type="text" placeholder="Your name" required&gt;<br>
+&lt;input type="email" placeholder="Your email"&gt;<br>
+&lt;input type="password"&gt;
+                            </div>
+                            <p><strong>Common Types:</strong> text, email, password, number, date, file, submit</p>
+                            <p><strong>Attributes:</strong> type, name, placeholder, required, value</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Textarea Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">📄 Textarea Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about the &lt;textarea&gt; element</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Textarea Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Multi-line text input field for longer content.</p>
+                            <p><strong>Resizable:</strong> Users can resize the text area.</p>
+                            <div class="code-example">
+&lt;textarea placeholder="Your message" rows="5" cols="50"&gt;&lt;/textarea&gt;
+                            </div>
+                            <p><strong>Common Uses:</strong> Comments, messages, descriptions, long-form content</p>
+                            <p><strong>Attributes:</strong> rows, cols, placeholder, required, maxlength</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">📋 Form Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about the &lt;form&gt; element</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Form Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Container for form elements that collect user data.</p>
+                            <p><strong>Submission:</strong> Handles form submission and data processing.</p>
+                            <div class="code-example">
+&lt;form action="/submit" method="POST"&gt;<br>
+&nbsp;&nbsp;&lt;input type="text" name="name"&gt;<br>
+&nbsp;&nbsp;&lt;textarea name="message"&gt;&lt;/textarea&gt;<br>
+&nbsp;&nbsp;&lt;button type="submit"&gt;Send&lt;/button&gt;<br>
+&lt;/form&gt;
+                            </div>
+                            <p><strong>Attributes:</strong> action (where to send), method (GET/POST)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type and Required Attributes -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">⚙️ Type & Required</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about these attributes</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Type & Required Attributes</div>
+                        <div class="flashcard-content">
+                            <p><strong>Type Attribute:</strong> Specifies the input type and behavior.</p>
+                            <div class="code-example">
+&lt;input type="text"&gt; &lt;!-- Text input --&gt;<br>
+&lt;input type="email"&gt; &lt;!-- Email with validation --&gt;<br>
+&lt;input type="password"&gt; &lt;!-- Hidden text --&gt;<br>
+&lt;input type="submit"&gt; &lt;!-- Submit button --&gt;
+                            </div>
+                            <p><strong>Required Attribute:</strong> Makes the field mandatory for form submission.</p>
+                            <div class="code-example">
+&lt;input type="email" required&gt; &lt;!-- Must be filled --&gt;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Script Tag -->
+            <div class="flashcard" onclick="flipCard(this)">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <div class="flashcard-title">🔧 Script Tag</div>
+                        <div class="flashcard-content">
+                            <p>Click to learn about &lt;script src="Index.js"&gt;&lt;/script&gt;</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="flashcard-title">Script Tag</div>
+                        <div class="flashcard-content">
+                            <p><strong>Purpose:</strong> Links external JavaScript file to the HTML document.</p>
+                            <p><strong>Function:</strong> Loads and executes JavaScript code from Index.js file.</p>
+                            <div class="code-example">
+&lt;script src="Index.js"&gt;&lt;/script&gt;
+                            </div>
+                            <p><strong>What it does:</strong></p>
+                            <ul style="text-align: left; margin: 1rem 0;">
+                                <li>Loads mobile navigation functionality</li>
+                                <li>Enables smooth scrolling</li>
+                                <li>Handles form submission</li>
+                                <li>Adds animations and interactions</li>
+                                <li>Manages theme toggle</li>
+                            </ul>
+                            <p><strong>Placement:</strong> Usually at the end of &lt;body&gt; for better performance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        function showAll() {
+            document.querySelectorAll('.flashcard').forEach(card => {
+                card.style.display = 'block';
+            });
+            updateNavButtons('All Cards');
+        }
+
+        function showStructure() {
+            const structureCards = [0, 1, 2]; // Section, Span, Div
+            showFilteredCards(structureCards);
+            updateNavButtons('Structure');
+        }
+
+        function showForm() {
+            const formCards = [4, 5, 6, 7]; // I, Input, Textarea, Form, Type/Required
+            showFilteredCards(formCards);
+            updateNavButtons('Form Elements');
+        }
+
+        function showMeta() {
+            const metaCards = [3, 8]; // Meta, Script
+            showFilteredCards(metaCards);
+            updateNavButtons('Meta & Script');
+        }
+
+        function showFilteredCards(visibleIndices) {
+            const cards = document.querySelectorAll('.flashcard');
+            cards.forEach((card, index) => {
+                if (visibleIndices.includes(index)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function updateNavButtons(activeText) {
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === activeText) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                const visibleCards = Array.from(document.querySelectorAll('.flashcard')).filter(card => 
+                    card.style.display !== 'none'
+                );
+                const currentCard = document.querySelector('.flashcard.flipped');
+                const currentIndex = visibleCards.indexOf(currentCard);
+                
+                if (e.key === 'ArrowRight' && currentIndex < visibleCards.length - 1) {
+                    if (currentCard) currentCard.classList.remove('flipped');
+                    visibleCards[currentIndex + 1].classList.add('flipped');
+                } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    if (currentCard) currentCard.classList.remove('flipped');
+                    visibleCards[currentIndex - 1].classList.add('flipped');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

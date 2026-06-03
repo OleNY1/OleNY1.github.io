@@ -1,9 +1,226 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Oleh Goumain - Computer Science student at Columbia University. Portfolio of web projects and technical skills.">
+    <title>Oleh Goumain - Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 <body>
-  <h1>Funny Joe</h1>
-  <p>Welcome to my website!</p>
-  <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" />
-</body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-orb hero-orb-1"><div class="hero-orb-inner"></div></div>
+            <div class="hero-orb hero-orb-2"><div class="hero-orb-inner"></div></div>
+            <div class="hero-orb hero-orb-3"><div class="hero-orb-inner"></div></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Hi, I'm <span class="highlight">Oleh Goumain</span></h1>
+            <p class="hero-subtitle">Computer Science Student</p>
+            <p class="hero-description">Columbia University · Building full-stack web projects with Python, Java, and JavaScript</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Bento Grid -->
+    <section id="about" class="about-section">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-orb hero-orb-1"><div class="hero-orb-inner"></div></div>
+            <div class="hero-orb hero-orb-2"><div class="hero-orb-inner"></div></div>
+            <div class="hero-orb hero-orb-3"><div class="hero-orb-inner"></div></div>
+        </div>
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="bento-grid">
+                <div class="bento-item large">
+                    <div class="bento-content">
+                        <h3>Who I Am</h3>
+                        <p>Computer Science student at Columbia University (B.A., expected May 2027) with a background in linguistics from Donetsk National University. I build web applications with Python and Flask, and I'm interested in software development, UI/UX, and data structures. Based in New York, NY.</p>
+                    </div>
+                </div>
+                <div class="bento-item">
+                    <div class="bento-content">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4>Education</h4>
+                        <p>Columbia University — B.A. Computer Science (2023–2027)</p>
+                    </div>
+                </div>
+                <div class="bento-item">
+                    <div class="bento-content">
+                        <i class="fas fa-code"></i>
+                        <h4>Technical</h4>
+                        <p>Java, Python, JavaScript, HTML/CSS, FastAPI, SQL, SQLite</p>
+                    </div>
+                </div>
+                <div class="bento-item">
+                    <div class="bento-content">
+                        <i class="fas fa-book"></i>
+                        <h4>Coursework</h4>
+                        <p>Data Structures, UI/UX, Databases, Calculus, Statistics</p>
+                    </div>
+                </div>
+                <div class="bento-item">
+                    <div class="bento-content">
+                        <i class="fas fa-language"></i>
+                        <h4>Languages</h4>
+                        <p>English (fluent), Ukrainian & Russian (native)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with Bento Grid -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="bento-grid">
+                <div class="bento-item project-card">
+                    <a href="https://github.com/OleNY1/Track-That" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <div class="bento-content">
+                            <div class="project-image">
+                                <img src="track-that.png" alt="Track That - Job application tracker interface">
+                            </div>
+                            <h4>Track That</h4>
+                            <p>Job and internship application tracker. Add applications, filter by status (Applied, Interviewing, Offer, Rejected), edit and delete entries with persistent SQLite storage.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">SQLite</span>
+                                <span class="tag">Bootstrap</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="bento-item project-card">
+                    <a href="https://github.com/OleNY1/Animatic_UI_Project" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <div class="bento-content">
+                            <div class="project-image">
+                                <img src="animatic.png" alt="Animatic - interactive animation learning platform landing page">
+                            </div>
+                            <h4>Animatic</h4>
+                            <p>Interactive learning platform for animation fundamentals. Learn drawing techniques and frame-by-frame animation with guide character Pip—includes Learn, Quiz, and About sections in a retro arcade-inspired UI.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">HTML/CSS</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="bento-item project-card">
+                    <a href="https://github.com/OleNY1/English_fiction_finder" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <div class="bento-content">
+                            <div class="project-image">
+                                <img src="english-fiction-finder.png" alt="English Fiction Finder - book recommendations for English learners">
+                            </div>
+                            <h4>English Fiction Finder</h4>
+                            <p>Web app for English learners and teachers to discover fiction by reading level, topic, and style. Browse featured books, search with highlighted matches, and view full details with tags and recommendations.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">Bootstrap</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-orb hero-orb-1"><div class="hero-orb-inner"></div></div>
+            <div class="hero-orb hero-orb-2"><div class="hero-orb-inner"></div></div>
+            <div class="hero-orb hero-orb-3"><div class="hero-orb-inner"></div></div>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:of2222@columbia.edu">of2222@columbia.edu</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>New York, NY</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p><a href="https://linkedin.com/in/oleh-goumain" target="_blank" rel="noopener noreferrer">linkedin.com/in/oleh-goumain</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Oleh Goumain. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://github.com/OleNY1" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/oleh-goumain" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="Index.js"></script>
+</body>
 </html>
