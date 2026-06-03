@@ -368,8 +368,95 @@ themeToggle.addEventListener('click', () => {
 
 document.body.appendChild(themeToggle);
 
+// Lazy-load section videos + poster for contact (same file as hero, cached after hero loads)
+function initLazySectionVideos() {
+    const heroVideo = document.getElementById('hero-video');
+    const contactVideo = document.getElementById('contact-video');
+    const contactWrap = document.getElementById('contact-video-wrap');
+
+    const capturePoster = (sourceVideo, targetVideo) => {
+        if (!sourceVideo || !targetVideo || sourceVideo.readyState < 2) return;
+        try {
+            const canvas = document.createElement('canvas');
+            const scale = 0.25;
+            canvas.width = Math.max(1, Math.floor(sourceVideo.videoWidth * scale));
+            canvas.height = Math.max(1, Math.floor(sourceVideo.videoHeight * scale));
+            canvas.getContext('2d').drawImage(sourceVideo, 0, 0, canvas.width, canvas.height);
+            targetVideo.setAttribute('poster', canvas.toDataURL('image/jpeg', 0.75));
+        } catch {
+            /* canvas capture blocked — gradient fallback remains */
+        }
+    };
+
+    if (heroVideo && contactVideo) {
+        const primeContactPoster = () => capturePoster(heroVideo, contactVideo);
+        heroVideo.addEventListener('loadeddata', primeContactPoster, { once: true });
+        if (heroVideo.readyState >= 2) primeContactPoster();
+    }
+
+    const loadLazyVideo = (video) => {
+        if (!video || video.dataset.loaded === 'true') return;
+
+        const src = video.dataset.src;
+        if (!src) return;
+
+        video.dataset.loaded = 'true';
+        video.src = src;
+
+        const onReady = () => {
+            video.classList.add('is-playing');
+            video.play().catch(() => {});
+        };
+
+        video.addEventListener('canplay', onReady, { once: true });
+        if (contactVideo === video && heroVideo?.readyState >= 3) {
+            capturePoster(heroVideo, contactVideo);
+        }
+        video.load();
+    };
+
+    const lazyVideos = document.querySelectorAll('.bg-video--lazy');
+    if (!lazyVideos.length) return;
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const video = entry.target;
+                    loadLazyVideo(video);
+                    observer.unobserve(video);
+                }
+            });
+        },
+        { rootMargin: '300px 0px', threshold: 0.01 }
+    );
+
+    lazyVideos.forEach((video) => observer.observe(video));
+
+    if (contactWrap && contactVideo) {
+        const prefetchContact = () => {
+            if (contactVideo.dataset.loaded === 'true') return;
+            if (heroVideo?.readyState >= 2) capturePoster(heroVideo, contactVideo);
+            loadLazyVideo(contactVideo);
+        };
+        if ('IntersectionObserver' in window) {
+            const earlyObserver = new IntersectionObserver(
+                (entries) => {
+                    if (entries.some((e) => e.isIntersecting)) {
+                        prefetchContact();
+                        earlyObserver.disconnect();
+                    }
+                },
+                { rootMargin: '600px 0px', threshold: 0 }
+            );
+            earlyObserver.observe(contactWrap);
+        }
+    }
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
+    initLazySectionVideos();
     console.log('Portfolio website loaded successfully!');
     
     // Add loading screen

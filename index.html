@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Oleh Goumain - Computer Science student at Columbia University. Portfolio of web projects and technical skills.">
     <title>Oleh Goumain - Portfolio</title>
+    <link rel="preload" href="bg-video-2.mp4" as="video" type="video/mp4">
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,11 +33,11 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-bg">
+        <div class="hero-bg hero-bg--video">
+            <video id="hero-video" class="bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="bg-video-2.mp4" type="video/mp4">
+            </video>
             <div class="hero-gradient"></div>
-            <div class="hero-orb hero-orb-1"><div class="hero-orb-inner"></div></div>
-            <div class="hero-orb hero-orb-2"><div class="hero-orb-inner"></div></div>
-            <div class="hero-orb hero-orb-3"><div class="hero-orb-inner"></div></div>
         </div>
         <div class="hero-content">
             <h1 class="hero-title">Hi, I'm <span class="highlight">Oleh Goumain</span></h1>
@@ -51,11 +52,9 @@
 
     <!-- About Section with Bento Grid -->
     <section id="about" class="about-section">
-        <div class="hero-bg">
+        <div class="hero-bg hero-bg--video hero-bg--video-dark">
+            <video class="bg-video bg-video--lazy" data-src="bg-video-1.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
             <div class="hero-gradient"></div>
-            <div class="hero-orb hero-orb-1"><div class="hero-orb-inner"></div></div>
-            <div class="hero-orb hero-orb-2"><div class="hero-orb-inner"></div></div>
-            <div class="hero-orb hero-orb-3"><div class="hero-orb-inner"></div></div>
         </div>
         <div class="container">
             <h2 class="section-title">About Me</h2>
@@ -158,11 +157,9 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
-        <div class="hero-bg">
+        <div class="hero-bg hero-bg--video" id="contact-video-wrap">
+            <video id="contact-video" class="bg-video bg-video--lazy" data-src="bg-video-2.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
             <div class="hero-gradient"></div>
-            <div class="hero-orb hero-orb-1"><div class="hero-orb-inner"></div></div>
-            <div class="hero-orb hero-orb-2"><div class="hero-orb-inner"></div></div>
-            <div class="hero-orb hero-orb-3"><div class="hero-orb-inner"></div></div>
         </div>
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>

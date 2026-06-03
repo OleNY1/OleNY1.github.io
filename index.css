@@ -130,6 +130,85 @@ body {
     position: absolute;
     inset: 0;
     pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.bg-video--lazy {
+    opacity: 0;
+    transition: opacity 0.6s ease-in;
+}
+
+.bg-video--lazy.is-playing {
+    opacity: 1;
+}
+
+.contact-section .hero-bg--video {
+    background: linear-gradient(160deg, #1e293b 0%, #334155 45%, #475569 100%);
+}
+
+.about-section .hero-bg--video-dark {
+    background: #0a0a0a;
+}
+
+.hero-bg--video .hero-gradient {
+    z-index: 1;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.15) 45%,
+        rgba(255, 255, 255, 0.4) 100%
+    );
+    animation: none;
+}
+
+.hero .hero-bg--video .hero-gradient,
+.contact-section .hero-bg--video .hero-gradient {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.45) 100%
+    );
+}
+
+.about-section .hero-bg--video-dark .hero-gradient {
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+}
+
+.about-section .section-title {
+    color: #f8fafc;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+.hero .hero-content,
+.hero .hero-content .hero-title,
+.hero .hero-content .hero-subtitle,
+.hero .hero-content .hero-description,
+.contact-section .section-title,
+.contact-section .contact-item,
+.contact-section .contact-form {
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.about-section .bento-item,
+.contact-section .contact-item,
+.contact-section .contact-form {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
 }
 
 .hero-gradient {
@@ -218,6 +297,53 @@ body {
 }
 
 /* Ensure dark theme works with dynamic backgrounds */
+.dark-theme .hero-bg--video .hero-gradient {
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.5) 0%,
+        rgba(15, 23, 42, 0.25) 45%,
+        rgba(15, 23, 42, 0.55) 100%
+    );
+}
+
+.dark-theme .hero .hero-bg--video .hero-gradient,
+.dark-theme .contact-section .hero-bg--video .hero-gradient {
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.55) 0%,
+        rgba(15, 23, 42, 0.3) 50%,
+        rgba(15, 23, 42, 0.6) 100%
+    );
+}
+
+.dark-theme .about-section .hero-bg--video-dark .hero-gradient {
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+}
+
+.dark-theme .about-section .section-title {
+    color: #f8fafc;
+}
+
+.dark-theme .hero .hero-content,
+.dark-theme .about-section .section-title,
+.dark-theme .about-section .bento-item,
+.dark-theme .contact-section .section-title,
+.dark-theme .contact-section .contact-item,
+.dark-theme .contact-section .contact-form {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.dark-theme .about-section .bento-item,
+.dark-theme .contact-section .contact-item,
+.dark-theme .contact-section .contact-form {
+    background: rgba(30, 41, 59, 0.88);
+}
+
 .dark-theme .hero-gradient {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #1e293b 100%);
     background-size: 400% 400%;
@@ -225,6 +351,21 @@ body {
 
 .dark-theme .hero-orb-inner {
     opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bg-video {
+        display: none;
+    }
+
+    .hero-bg--video .hero-gradient {
+        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #f8fafc 100%);
+        animation: none;
+    }
+
+    .dark-theme .hero-bg--video .hero-gradient {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e293b 100%);
+    }
 }
 
 /* stopped at line-height */
@@ -245,14 +386,14 @@ body {
 
 .hero-subtitle {
     font-size: 1.5rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     margin-bottom: 1rem;
     font-weight: 500;
 }
 
 .hero-description {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
@@ -406,6 +547,9 @@ body {
 /* Projects Section */
 .projects-section {
     padding: 6rem 0;
+    background-color: var(--bg-primary);
+    position: relative;
+    z-index: 1;
 }
 
 .project-card {
